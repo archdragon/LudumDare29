@@ -17,6 +17,7 @@ public class ItemRay : MonoBehaviour {
 		
 	// Use this for initialization
 	void Start () {
+		Screen.showCursor = false;
 
 		arrow = GameObject.Find("/Arrow");
 
@@ -51,6 +52,7 @@ public class ItemRay : MonoBehaviour {
 				targetCrosshair.SetActive(true);
 				basicCrosshair.SetActive(false);
 				if(Input.GetMouseButtonDown(0)) {
+					GameObject instance = (GameObject)Instantiate(Resources.Load("Absorb Explosion", typeof(GameObject)), hit.transform.gameObject.transform.position, hit.transform.gameObject.transform.rotation);
 					Destroy(hit.transform.parent.transform.parent.transform.gameObject);
 				}
 
@@ -80,6 +82,8 @@ public class ItemRay : MonoBehaviour {
 		int count = targets.transform.childCount;
 
 		if(count == 0) {
+			//GameObject.Find("Fade Out").SendMessage("StartFade");
+			//yield return new WaitForSeconds(2);
 			Application.LoadLevel("won");
 		}
 
